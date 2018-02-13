@@ -32,6 +32,7 @@ const chooseWord = () => {
 chooseWord();
 
 server.post('/guess', (req, res) => {
+	flag = true;
 
 	const letter = req.body.letter;
 
@@ -58,7 +59,9 @@ server.post('/guess', (req, res) => {
 		} 
 	}
 
-	if (!word.includes(letter)) flag = false;
+	if (!wordSoFar.includes(letter)) {
+		flag = false;
+	} 
 
 	if (flag === false) {
 		wrongCount += 1;
